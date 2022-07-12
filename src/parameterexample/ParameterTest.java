@@ -1,4 +1,4 @@
-package assertions;
+package parameterexample;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,17 +7,23 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class AssertExample {
+public class ParameterTest {
     WebDriver driver;
-    String uri = "https://opensource-demo.orangehrmlive.com";
 
     @BeforeClass
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "/Users/mehedisumi/Downloads/chromedriver");
-        driver = new ChromeDriver();
-        driver.get(uri);
+    @Parameters({"browser", "url"})
+    public void setUp(String browser, String appUri) {
+        if (browser.equalsIgnoreCase("chrome")) {
+            System.setProperty("webdriver.chrome.driver", "/Users/mehedisumi/Downloads/chromedriver");
+            driver = new ChromeDriver();
+
+        } else {
+            System.out.println("Error!");
+        }
+        driver.get(appUri);
         driver.manage().window().maximize();
 
     }
@@ -35,8 +41,8 @@ public class AssertExample {
     }
 
     @AfterTest
-    void tearDown(){
-        if(null != driver){
+    void tearDown() {
+        if (null != driver) {
             driver.close();
         }
     }

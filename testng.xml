@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="url" value="https://opensource-demo.orangehrmlive.com"></parameter>
+
+    <test name="ParameterTest">
+        <classes>
+            <class name="parameterexample.ParameterTest"></class>
+        </classes>
+    </test>
+
+    <test name="groupingTest">
+        <groups>
+            <run>
+                <exclude name="retest"/>
+                <include name="sanityTest"/>
+                <include name="systemTest"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="group.GroupExample"></class>
+        </classes>
+
+    </test>
+
+</suite>
