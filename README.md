@@ -1,1 +1,1 @@
-testing with testNG
+Web application testing using Selenium driver and testNG.
